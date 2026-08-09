@@ -385,9 +385,9 @@
         <div class="ctx-item" id="autoArrangeToggle" onclick="toggleAutoArrange(); hideCtx()">自动排列图标：开启</div>
         <div class="ctx-divider"></div>
         <div class="ctx-item" onclick="arrangeIconsGrid(); hideCtx()">对齐网格规整图标</div>
-        <div class="ctx-item" onclick="refreshDesktop(); hideCtx()">刷新桌面</div>
+        <div class="ctx-item" onclick="refreshDesktop(); hideCtx()">flip</div>
         <div class="ctx-divider"></div>
-        <div class="ctx-item" onclick="openWindow('explorer'); hideCtx()">文件资源管理器</div>
+        <div class="ctx-item" onclick="openWindow('explorer'); hideCtx()">explorer</div>
         <div class="ctx-item" onclick="openWindow('calc'); hideCtx()">计算器</div>
         <div class="ctx-item" onclick="openWindow('notepad'); hideCtx()">记事本</div>
     </div>
@@ -396,15 +396,15 @@
         <div class="login-title">Windows 11 虚拟桌面登录</div>
         <div class="login-box">
             <div class="login-item">
-                <label>用户名</label>
+                <label>user name</label>
                 <input type="text" id="inputUser" placeholder="enter your name...">
             </div>
             <div class="login-item">
-                <label>密码</label>
+                <label>password</label>
                 <input type="password" id="inputPwd" placeholder="">
             </div>
             <div class="login-error" id="loginTip"></div>
-            <button class="login-btn" onclick="doLogin()">登录系统</button>
+            <button class="login-btn" onclick="doLogin()">setup</button>
         </div>
     </div>
     <!-- 登录成功过渡页 -->
@@ -419,7 +419,7 @@
         <div class="desktop-icons" id="iconContainer">
             <div class="desktop-icon" data-id="explorer" ondblclick="openWindow('explorer')">
                 <div class="icon-img">📁</div>
-                <div class="icon-label">文件资源管理器</div>
+                <div class="icon-label">explorer</div>
             </div>
             <div class="desktop-icon" data-id="phone" ondblclick="openWindow('phone')">
                 <div class="icon-img">📞</div>
