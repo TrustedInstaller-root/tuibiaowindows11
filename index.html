@@ -375,7 +375,7 @@
     <!-- 右键菜单（新增新建子菜单） -->
     <div class="context-menu" id="ctxMenu">
         <div class="ctx-item ctx-parent">
-            新建 ▶
+            新建
             <div class="ctx-sub">
                 <div class="ctx-item" onclick="newTextFile();hideCtx()">文本文档</div>
                 <div class="ctx-item" onclick="newFolder();hideCtx()">文件夹</div>
@@ -423,15 +423,15 @@
             </div>
             <div class="desktop-icon" data-id="phone" ondblclick="openWindow('phone')">
                 <div class="icon-img">📞</div>
-                <div class="icon-label">电话号码</div>
+                <div class="icon-label">phone</div>
             </div>
             <div class="desktop-icon" data-id="wechat" ondblclick="openWindow('wechat')">
                 <div class="icon-img">💬</div>
-                <div class="icon-label">微信</div>
+                <div class="icon-label">WeChat</div>
             </div>
             <div class="desktop-icon" data-id="email" ondblclick="openWindow('email')">
                 <div class="icon-img">📧</div>
-                <div class="icon-label">邮箱</div>
+                <div class="icon-label">e-mail</div>
             </div>
             <div class="desktop-icon" data-id="calc" ondblclick="openWindow('calc')">
                 <div class="icon-img">🔢</div>
@@ -448,25 +448,25 @@
         </div>
         <!-- 开始菜单 -->
         <div class="start-menu" id="startMenu">
-            <input class="start-search" placeholder="搜索应用、设置..." oninput="filterApps(this.value)">
+            <input class="start-search" placeholder="search..." oninput="filterApps(this.value)">
             <div>
                 <h2>已固定</h2>
                 <div class="start-grid" id="appGrid">
                     <div class="start-app" data-key="explorer" onclick="openWindow('explorer'); toggleStartMenu();">
                         <div style="font-size:28px;">📁</div>
-                        <div class="start-app-label">文件资源管理器</div>
+                        <div class="start-app-label">explorer.exe</div>
                     </div>
                     <div class="start-app" data-key="phone" onclick="openWindow('phone'); toggleStartMenu();">
                         <div style="font-size:28px;">📞</div>
-                        <div class="start-app-label">电话号码</div>
+                        <div class="start-app-label">phone</div>
                     </div>
                     <div class="start-app" data-key="wechat" onclick="openWindow('wechat'); toggleStartMenu();">
                         <div style="font-size:28px;">💬</div>
-                        <div class="start-app-label">微信</div>
+                        <div class="start-app-label">WeChat</div>
                     </div>
                     <div class="start-app" data-key="email" onclick="openWindow('email'); toggleStartMenu();">
                         <div style="font-size:28px;">📧</div>
-                        <div class="start-app-label">邮箱</div>
+                        <div class="start-app-label">e-mail</div>
                     </div>
                     <div class="start-app" data-key="calc" onclick="openWindow('calc'); toggleStartMenu();">
                         <div style="font-size:28px;">🔢</div>
@@ -478,7 +478,7 @@
                     </div>
                     <div class="start-app" data-key="settings" onclick="openWindow('settings'); toggleStartMenu();">
                         <div style="font-size:28px;">⚙️</div>
-                        <div class="start-app-label">设置</div>
+                        <div class="start-app-label">set</div>
                     </div>
                     <div class="start-app" data-key="help" onclick="openWindow('help'); toggleStartMenu();">
                         <div style="font-size:28px;">📖</div>
@@ -531,10 +531,10 @@
         let newFileId = storage.get('newFileId') || 0;
         // 应用数据模型（新增设置、计算器、记事本、回收站）
         const fileData = {
-            phone: { title: "电话号码.txt", label: "电话号码", value: "18011940743", icon: "📞", type:"文本文档", size:"2KB" },
-            wechat: { title: "微信账号.txt", label: "微信号", value: "同上 (18011940743)", icon: "💬", type:"文本文档", size:"1KB" },
-            email: { title: "电子邮箱.txt", label: "邮箱地址", value: '<a href="mailto:chenhaoqi0927@outlook.com">chenhaoqi0927@outlook.com</a>', icon: "📧", type:"文本文档", size:"1KB" },
-            explorer: { title: "文件资源管理器", label: "系统文件", icon: "📁", isExplorer: true },
+            phone: { title: "phone.txt", label: "phone", value: "18011940743", icon: "📞", type:"文本文档", size:"1KB" },
+            wechat: { title: "WeChat.txt", label: "UID", value: "18011940743", icon: "💬", type:"文本文档", size:"1KB" },
+            email: { title: "e-mail.txt", label: "e-mail", value: '<a href="mailto:chenhaoqi0927@outlook.com">chenhaoqi0927@outlook.com</a>', icon: "📧", type:"文本文档", size:"1KB" },
+            explorer: { title: "explorer", label: "系统文件", icon: "📁", isExplorer: true },
             help: {
                 title: "网站使用说明",
                 label: "操作指南",
@@ -825,11 +825,11 @@
             const pwd = document.getElementById('inputPwd').value;
             const tip = document.getElementById('loginTip');
             if (!user) {
-                tip.innerText = "请输入用户名";
+                tip.innerText = "enter your name...";
                 return;
             }
             if (pwd !== "114514") {
-                tip.innerText = "密码错误，请重新输入";
+                tip.innerText = "errow:password not true";
                 return;
             }
             tip.innerText = "";
@@ -1009,13 +1009,13 @@
                         <div class="explorer-nav-btn" title="后退">←</div>
                         <div class="explorer-nav-btn" title="前进">→</div>
                         <div class="explorer-nav-btn" title="上一级">↑</div>
-                        <div class="explorer-path">此电脑 > 桌面</div>
-                        <div class="explorer-nav-btn" title="刷新">⟳</div>
+                        <div class="explorer-path">此电脑 > Desktop</div>
+                        <div class="explorer-nav-btn" title="flip">⟳</div>
                     </div>
                     <div class="explorer-wrap">
                         <div class="explorer-sidebar">
                             <div style="font-size:12px;opacity:0.6;margin-bottom:8px;">快速访问</div>
-                            <div class="explorer-sidebar-item" onclick="openWindow('explorer')">📁 桌面</div>
+                            <div class="explorer-sidebar-item" onclick="openWindow('explorer')">📁 Desktop</div>
                             <div class="explorer-sidebar-item" onclick="openWindow('notepad')">📝 记事本</div>
                             <div class="explorer-sidebar-item" onclick="openWindow('recycle')">🗑️ 回收站</div>
                             <div style="font-size:12px;opacity:0.6;margin:12px 0 8px;">此电脑</div>
