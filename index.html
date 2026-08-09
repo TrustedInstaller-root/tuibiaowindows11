@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陈昊祺的 Windows 11 桌面（修复版）</title>
+    <title>welcome to get updates - Windows 11</title>
     <style>
         :root {
             --win-accent: #0067c0;
@@ -314,7 +314,6 @@
         .explorer-file-name { flex:1; font-size:13px; }
         .explorer-file-type { width:80px; font-size:12px; opacity:0.7; text-align:center; }
         .explorer-file-size { width:70px; font-size:12px; opacity:0.7; text-align:right; }
-
         table { width: 100%; border-collapse: collapse; }
         td { padding: 12px; font-size: 14px; border-bottom: 1px solid rgba(0,0,0,0.05); }
         td:first-child { color: #666; width: 80px; font-weight: 500; }
@@ -518,6 +517,8 @@
             set: (k,v)=>localStorage.setItem(k,JSON.stringify(v))
         };
         let config = storage.get('win11Config') || { dark:false, wallpaper:0, autoArrange:true };
+        // 新增登录状态标记，修复桌面回车触发登录问题
+        let isLogined = false;
         // 桌面图标位置存储
         let iconPositions = storage.get('desktopIconPos') || {};
         const GRID_CELL = 95;
@@ -668,7 +669,6 @@
             const rawTop = parseInt(dragIcon.style.top);
             let snapL = snapGrid(rawLeft);
             let snapT = snapGrid(rawTop);
-
             // 获取当前拖拽图标矩形
             const dragRect = {
                 left: snapL,
@@ -676,7 +676,6 @@
                 right: snapL + GRID_CELL,
                 bottom: snapT + GRID_CELL
             };
-
             // 获取所有其他图标，检测碰撞
             const allIcons = document.querySelectorAll('.desktop-icon');
             let hasCollision = true;
@@ -702,7 +701,6 @@
                     }
                 }
             }
-
             dragIcon.style.left = snapL + 'px';
             dragIcon.style.top = snapT + 'px';
             // 保存位置
@@ -841,6 +839,8 @@
             setTimeout(()=>{
                 document.getElementById('welcomeScreen').style.display = "none";
                 document.getElementById('desktopWrap').style.display = "block";
+                // 修复：登录成功标记为已登录，桌面回车不再触发登录
+                isLogined = true;
                 // 加载本地存储主题壁纸
                 toggleDarkMode(config.dark);
                 setWallpaper(config.wallpaper);
@@ -854,7 +854,10 @@
         }
         // 【BUG4修复】监听Win键，阻止系统默认弹出开始菜单
         document.addEventListener('keydown', e=>{
-            if(e.key === 'Enter') doLogin();
+            // 仅未登录状态下回车执行登录，已登录直接跳过
+            if(e.key === 'Enter' && !isLogined) {
+                doLogin();
+            }
             // Win快捷键打开开始菜单并屏蔽系统弹窗
             if(e.key === 'Meta' || e.key === 'OS') {
                 e.preventDefault();
